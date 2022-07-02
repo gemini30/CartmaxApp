@@ -25,6 +25,7 @@ class Product with ChangeNotifier {
     notifyListeners();
   }
 
+  // To notify the database that product is favorited
   Future<void> toggleFavoriteStatus() async {
     final oldStatus = isFavorite;
     isFavorite = !isFavorite;

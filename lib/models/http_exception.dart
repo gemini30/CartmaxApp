@@ -1,3 +1,5 @@
+// Handle errors produced due to some reason such as faulty wifi,etc.
+
 class HttpException implements Exception {
   final String message;
 

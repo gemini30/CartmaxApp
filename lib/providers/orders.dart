@@ -26,6 +26,7 @@ class Orders with ChangeNotifier {
     return [..._orders];
   }
 
+  // Fetch data from orders table to display recent and past order details
   Future<void> fetchAndSetOrders() async {
     final url =
         Uri.https('cartmax-js30-default-rtdb.firebaseio.com', '/orders.json');

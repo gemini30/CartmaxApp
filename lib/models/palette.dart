@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 
+// Create custom color accents
 MaterialColor createMaterialColor(Color color) {
   List strengths = <double>[.05];
   Map<int, Color> swatch = {};
