@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -17,6 +18,8 @@ class Products with ChangeNotifier {
     //       'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
   ];
   // var _showFavoritesOnly = false;
+  final String authToken;
+  Products(this.authToken, this._items);
 
   List<Product> get items {
     // if (_showFavoritesOnly) {
@@ -45,11 +48,17 @@ class Products with ChangeNotifier {
 
   // To fetch products from database to display in catalogue
   Future<void> fetchAndSetProducts() async {
-    final url =
+    var url =
         Uri.https('cartmax-js30-default-rtdb.firebaseio.com', '/products.json');
     try {
-      final response = await http.get(url);
+      final response = await http.get(
+        url,
+        // headers: {HttpHeaders.authorizationHeader: authToken},
+      );
+      // print(response.statusCode);
+      // print(response.body);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      // print(extractedData);
       if (extractedData == null) {
         return;
       }
